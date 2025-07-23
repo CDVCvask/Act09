@@ -8,6 +8,7 @@ def Menu():
 allow = False
 clients = {}
 cont = 0
+cont1 = 0
 try:
     while allow == False:
         Menu()
@@ -20,10 +21,26 @@ try:
                 else:
                     for i in range(number):
                         C_code = f"CL+{cont}"
+                        clients[C_code] = {}
                         name = input("Ingrese el nombre del cliente: ")
+                        clients[C_code]["name"] = name
                         traveln = int(input("Ingrese cuántos destinos desea ingresar: "))
+                        if traveln <= 0 or traveln >5:
+                            print("La cantidad ingresada no es valida")
+                        else:
+                            for i in range(traveln):
+                                D_code = f"D+{cont1}"
+                                destiny = input(f"Ingrese el destino no.{i}")
+                                clients[D_code]["destiny"][D_code] = {destiny}
+                                cont1 = cont1 + 1
+                        cont = cont + 1
             case 2:
-                print("Ver")
+                show_c = 0
+                for code, value in clients.items():
+                    print(f"Cliente {show_c}")
+                    print(f"Código de cliente: {code}")
+                    print(f"Nombre del cliente: {value['name']}")
+                    print("Destinos del cliente")
             case 3:
                 print("Ver")
             case 4:
