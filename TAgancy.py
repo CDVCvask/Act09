@@ -15,7 +15,7 @@ try:
         opt = int(input("Ingrese la opción que desee: "))
         match opt:
             case 1:
-                number = int(input("Cuantos clientes desea ingresar?"))
+                number = int(input("Cuantos clientes desea ingresar? "))
                 if number <= 0 or number >100:
                     print("La cantidad ingresada no es valida")
                 else:
@@ -30,17 +30,21 @@ try:
                         else:
                             for i in range(traveln):
                                 D_code = f"D+{cont1}"
-                                destiny = input(f"Ingrese el destino no.{i}")
-                                clients[D_code]["destiny"][D_code] = {destiny}
+                                destiny = input(f"Ingrese el destino no.{i+1}: ")
+                                clients[D_code]["Destiny"][D_code] = {destiny}
                                 cont1 = cont1 + 1
                         cont = cont + 1
             case 2:
-                show_c = 0
+                show_c = 1
                 for code, value in clients.items():
+                    des_c = 1
                     print(f"Cliente {show_c}")
                     print(f"Código de cliente: {code}")
                     print(f"Nombre del cliente: {value['name']}")
-                    print("Destinos del cliente")
+                    print(f"Destinos del cliente {show_c}")
+                    for code, value in value["Destiny"].items():
+                        print(f"Destino {des_c}: {value['destiny']}")
+
             case 3:
                 print("Ver")
             case 4:
