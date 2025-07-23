@@ -6,6 +6,12 @@ def Menu():
     print("3.Total de destinos visitados")
     print("4.Cliente con más destinos")
     print("5.Salir")
+def Total_Des(Clients,N,Tot):
+    if N == len(Clients):
+        return 1
+    else:
+        Tot = Tot + Clients[f"CL{N}"]["Destiny"]['Quantity']
+        return Total_Des(Clients,N+1,Tot)
 allow = False
 clients = {}
 cont = 0
@@ -33,7 +39,7 @@ try:
                             for i in range(traveln):
                                 D_code = f"DY{cont1}"
                                 destiny = input(f"Ingrese el destino no.{i+1}: ")
-                                clients[C_code]["Destiny"][D_code] = {"destination": destiny}
+                                clients[C_code]["Destiny"][D_code] = {"destination": destiny,"Quantity": traveln}
                                 cont1 = cont1 + 1
                         cont = cont + 1
                     print(" ")
@@ -53,7 +59,7 @@ try:
                 print(" ")
 
             case 3:
-                print("Ver")
+                print(f"{len(clients)} clientes encontrados")
             case 4:
                 print("Ver")
             case 5:
