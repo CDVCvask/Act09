@@ -8,9 +8,13 @@ def Menu():
     print("5.Salir")
 def Total_Des(Clients,N,Tot):
     if N == len(Clients):
-        return 1
+        return Tot
     else:
-        Tot = Tot + Clients[f"CL{N}"]["Destiny"]['Quantity']
+        for code,value in Clients.items():
+            for code,value in value["Destiny"].items():
+                Tot = Tot + value["Quantity"]
+                break
+            break
         return Total_Des(Clients,N+1,Tot)
 allow = False
 clients = {}
@@ -59,7 +63,7 @@ try:
                 print(" ")
 
             case 3:
-                print(f"{len(clients)} clientes encontrados")
+                print(Total_Des(clients,0,0))
             case 4:
                 print("Ver")
             case 5:
