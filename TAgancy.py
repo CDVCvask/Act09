@@ -6,16 +6,15 @@ def Menu():
     print("3.Total de destinos visitados")
     print("4.Cliente con más destinos")
     print("5.Salir")
-def Total_Des(Clients,N,Tot):
-    if N == len(Clients):
+def Total_Des(Clients, N, Tot):
+    keys = list(Clients.keys())
+    if N == len(keys):
         return Tot
     else:
-        for code,value in Clients.items():
-            for code,value in value["Destiny"].items():
-                Tot = Tot + value["Quantity"]
-                break
-            break
-        return Total_Des(Clients,N+1,Tot)
+        current_client = Clients[keys[N]]
+        for destiny in current_client["Destiny"].values():
+            Tot += destiny["Quantity"]
+        return Total_Des(Clients, N + 1, Tot)
 allow = False
 clients = {}
 cont = 0
