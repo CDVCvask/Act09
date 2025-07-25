@@ -15,6 +15,23 @@ def Total_Des(Clients, N, Tot):
         for destiny in current_client["Destiny"].values():
             Tot += destiny["Quantity"]
         return Total_Des(Clients, N + 1, Tot)
+def Most(Clients,N,High,Cont):
+    keys = list(Clients.keys())
+    if N == len(keys):
+        return High
+    else:
+        current_client = Clients[keys[N]]
+        for destiny in current_client["Destiny"].values():
+            if Cont == 0:
+                High = destiny["Quantity"]
+                Cont = 1
+                return Most(Clients,N+1,High,Cont)
+            else:
+                if destiny["Quantity"] > High:
+                    High = destiny["Quantity"]
+                    return Most(Clients,N+1,High,Cont)
+                else:
+                    return Most(Clients,N+1,High,Cont)
 allow = False
 clients = {}
 cont = 0
@@ -64,7 +81,7 @@ try:
             case 3:
                 print(Total_Des(clients,0,0))
             case 4:
-                print("Ver")
+                Most(clients,0,0,0)
             case 5:
                 print("Bing Bong le agradece por utilizar el programa")
                 break
