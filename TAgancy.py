@@ -15,23 +15,21 @@ def Total_Des(Clients, N, Tot):
         for destiny in current_client["Destiny"].values():
             Tot += destiny["Quantity"]
         return Total_Des(Clients, N + 1, Tot)
-def Most(Clients,N,High,Cont):
+def Most(Clients,N,High,client_code):
+    Cont = 0
     keys = list(Clients.keys())
     if N == len(keys):
-        return High
+        return client_code
     else:
         current_client = Clients[keys[N]]
         for destiny in current_client["Destiny"].values():
-            if Cont == 0:
-                High = destiny["Quantity"]
-                Cont = 1
-                return Most(Clients,N+1,High,Cont)
-            else:
-                if destiny["Quantity"] > High:
-                    High = destiny["Quantity"]
-                    return Most(Clients,N+1,High,Cont)
-                else:
-                    return Most(Clients,N+1,High,Cont)
+            Cont = Cont + destiny["Quantity"]
+        if Cont > High:
+            High = Cont
+            client_code = keys[N]
+            return Most(Clients, N + 1, High, client_code)
+        else:
+            return Most(Clients, N + 1, High, client_code)
 allow = False
 clients = {}
 cont = 0
