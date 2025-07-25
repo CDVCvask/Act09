@@ -42,7 +42,7 @@ try:
                             for i in range(traveln):
                                 D_code = f"DY{cont1}"
                                 destiny = input(f"Ingrese el destino no.{i+1}: ")
-                                clients[C_code]["Destiny"][D_code] = {"destination": destiny,"Quantity": traveln}
+                                clients[C_code]["Destiny"][D_code] = {"destination": destiny,"Quantity": 1}
                                 cont1 = cont1 + 1
                         cont = cont + 1
                     print(" ")
